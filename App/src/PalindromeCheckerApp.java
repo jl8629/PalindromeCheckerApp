@@ -10,19 +10,28 @@ public class PalindromeCheckerApp {
         System.out.println("Version : 1.0");
         System.out.println("System initialized successfully");
 
-        String original = "madam";
-        String reversed = "";
+        String str = "madam";
+        char[] chars = str.toCharArray();
 
-        for (int i = original.length() - 1; i >= 0; i--) {
-            reversed = reversed + original.charAt(i);
+        int left = 0;
+        int right = chars.length - 1;
+        boolean isPalindrome = true;
+
+        while (left < right) {
+            if (chars[left] != chars[right]) {
+                isPalindrome = false;
+                break;
+            }
+            left++;
+            right--;
         }
 
-                // Compare original and reversed string
-        if (original.equals(reversed)) {
+        if (isPalindrome) {
             System.out.println("The string is a palindrome.");
         } else {
             System.out.println("The string is not a palindrome.");
         }
     }
 }
+
 
