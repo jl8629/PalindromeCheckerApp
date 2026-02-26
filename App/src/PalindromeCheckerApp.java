@@ -1,40 +1,39 @@
-//version 1.0
-//author Jasmitha
-//useCase 1 : Welcome Page
-
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
 import java.util.Scanner;
+
 public class PalindromeCheckerApp {
-
     public static void main(String[] args) {
-        System.out.println("Welcome to Palindrome Checker Management System");
-        System.out.println("Version : 1.0");
-        System.out.println("System initialized successfully");
-        import java.util.Stack;
+        Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine();
 
-        String str = "madam";
+        Queue<Character> queue = new LinkedList<>();
         Stack<Character> stack = new Stack<>();
 
-        for (int i = 0; i < str.length(); i++) {
-            stack.push(str.charAt(i));
+        for (char ch : input.toCharArray()) {
+            queue.add(ch);
+            stack.push(ch);
         }
 
-        boolean isPalindrome = true;
+        StringBuilder dequeueResult = new StringBuilder();
+        StringBuilder popResult = new StringBuilder();
 
-        for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) != stack.pop()) {
-                isPalindrome = false;
-                break;
-            }
+        while (!queue.isEmpty()) {
+            dequeueResult.append(queue.remove());
         }
 
-        if (isPalindrome) {
-            System.out.println("The string is a palindrome.");
+        while (!stack.isEmpty()) {
+            popResult.append(stack.pop());
+        }
+
+        System.out.println("Queue (FIFO - Dequeue): " + dequeueResult.toString());
+        System.out.println("Stack (LIFO - Pop): " + popResult.toString());
+
+        if (dequeueResult.toString().equals(popResult.reverse().toString())) {
+            System.out.println("Palindrome: Yes");
         } else {
-            System.out.println("The string is not a palindrome.");
+            System.out.println("Palindrome: No");
         }
     }
 }
-
-
-
-
